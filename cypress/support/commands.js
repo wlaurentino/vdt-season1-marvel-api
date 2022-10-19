@@ -96,6 +96,21 @@ Cypress.Commands.add('getCharacterById', function (characterId) {
 
 })
 
+Cypress.Commands.add('deleteCharacterById', function (characterId) {
+    cy.api({
+        method: 'DELETE',
+        url: '/characters/' + characterId,
+        headers: {
+            Authorization: Cypress.env('token')
+        },
+        failOnStatusCode: false
+    }).then(function (response) {
+        return response
+    })
+
+})
+
+
 
 Cypress.Commands.add('searchCharacters', function (characterName) {
     cy.api({
